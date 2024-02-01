@@ -1008,7 +1008,7 @@ wget "https://raw.githubusercontent.com/hawshemi/Linux-Optimizer/main/linux-opti
 ----------------
 
 ```
-apt install python3 -y && sudo apt install python3-pip &&  pip install colorama && pip install netifaces && apt install curl -y && python3 <(curl -Ls https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/ipipv2.py --ipv4)
+apt install python3 -y && sudo apt install python3-pip &&  pip install colorama && pip install netifaces && apt install curl -y && python3 <(curl -Ls https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ipipv2.py --ipv4)
 ```
 
 
@@ -1022,13 +1022,13 @@ sudo apt-get install python-pip -y  &&  apt-get install python3 -y && alias pyth
  <div dir="rtl">&bull;  دستور زیر برای کسانی هست که پیش نیاز ها را در سرور، نصب شده دارند</div>
  
 ```
-python3 <(curl -Ls https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/ipipv2.py --ipv4)
+python3 <(curl -Ls https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ipipv2.py --ipv4)
 ```
 --------------------------------------
  <div dir="rtl">&bull; اگر سرور شما خطای externally-managed-environment داد از دستور زیر اقدام به اجرای اسکریپت نمایید.</div>
  
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/managed2.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed2.sh)"
 ```
 
 ---------------------------------------------
