@@ -1,34 +1,45 @@
+**این پروژه صرفا برای آموزش و بالا بردن دانش بوده است و هدف دیگری در ان نمیباشد**
+
+**تانل udp برای گیم همراه با ipsec هم کار خواهم کرد**
+
 ![R (2)](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/a064577c-9302-4f43-b3bf-3d4f84245a6f)
-نام پروژه :  Geneve | anycast | 6TO4 | GRE | GRE6 | IP6IP6 | SIT - چندین سرور ایران و خارج
+نام پروژه :  Geneve | anycast | 6TO4 | GRE | GRE6 | IP6IP6 | SIT | Erspan + IPsec- چندین سرور ایران و خارج
 ---------------------------------------------------------------
 ----------------------------------
 ![check](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/13de8d36-dcfe-498b-9d99-440049c0cf14)
 **امکانات و نکات**
 
-- امکان تانل های متفاوت که شامل IP6IP6 | 6TO4 | GRE6 | Geneve و غیره میشود
+- امکان تانل های متفاوت که شامل IP6IP6 | 6TO4 | GRE6 | Geneve | Erspan + IPsec و غیره میشود
 - امکان تانل 6TO4 و ANYCAST و IP6IP6 و GRE6 بین چندین سرور خارج و ایران
 - امکان پورت فوروارد و تانل اصلی پس از اجرای 6TO4 و سایر تانل ها
 - امکان تانل Geneve با چندین روش متفاوت
+- امکان تانل erspan همراه با ipsec
+- امکان تانل gre6tap
 - تانل Geneve +  Gre6 با دو روش NATIVE یا IPV4
 - امکان حذف جداگانه
 - امکان تانل بدون داشتن Native IPV6
 - امکان تغییر دیفالت روت هم اضافه شد برای کسانی که مشکل نوسان دارند.
 - حتما پرایوت ایپی ها را در پنل باز کنید تا کانفیگ های شما کار کند.
 - اگر در فایروال خود پرایوت ایپی ها را بستید، ایپی مربوطه را در فایروال خود باز کنید (اگر نمیدانید چگونه ! در اینترنت سرچ بکنید)
-- امکان ویرایش MTU به menu اضافه شد (برای کاهش پکت لاست)
-- **اگر یک روش کار نکرد روش های دیگر را امتحان کنید.**
+- امکان ویرایش MTU به menu اضافه شد (کاهش packet loss)
+---------------
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید و حتما پس از روشن کردن آن، ufw reload هم بزنید اگر کار نکرد**
+- **اگر فایروال روشن دارید و تانل gen کار نکرد، پس از هر بار ریبوت ممکن است نیاز باشد که یک بار بر روی هر دو سرور ufw reload بزنید وگرنه ممکن است تانل کار نکند.**
+- **اگر یک روش کار نکرد روش های دیگر را امتحان کنید.**(اگر بعضی روش ها کار نکرد ، پس از uninstall، یک بار هم ریبوت نمایید)
 - **در اینده سایر روش ها را هم اضافه میکنم**
 -------
-**با تشکر از kalilovers برای تست کردن و SHARE کردن اطلاعات لاگ ها و تست ها که در بهینه کردن اسکریپت، نقش به سزایی داشتند**
- 
- ------------------------------------------------------
+
   <div align="right">
   <details>
     <summary><strong><img src="https://github.com/Azumi67/Rathole_reverseTunnel/assets/119934376/3cfd920d-30da-4085-8234-1eec16a67460" alt="Image"> آپدیت</strong></summary>
   
 ------------------------------------ 
 
+- تانل erspan همراه با ipsec اضافه شد
+- مشکلات کار نکردن تانل ip6tnl بعد از ریبوت، برطرف شد
+- مشکلات mtu در private ip چندین سرور برطرف شد
 - مشکلات تنظیم دیفالت روت و MTU برطرف شد
+- اضافه کردن گزینه روت برای gre6 + native gen
 - تانل geneve با چندین روش متفاوت اضافه شد
 - امکان تانل بین چندین سرور اضافه شد.
 - چندین دستور ip اضافه شد
@@ -36,7 +47,6 @@
 - ویرایش mtu به منو اضافه شد
 - از این به بعد میتوانید MTU را خودتان تنظیم کنید یا به صورت اتوماتیک مانند قدیم انتخاب شود.
 - گرینه yes برای ست کردن Mtu به صورت دستی و گزینه no برای ست کردن اتوماتیک میباشد.
-- اگر MTU مورد نظر شما ثبت نشد، هم سرور خارج و سرور ایران را یک بار ریبوت کنید.
 - مشکل ذخیره نکردن ایپی های جدید Native IPV6 حل شد
 
   </details>
@@ -103,6 +113,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/c9d176d3-56ca-42a4-88c4-729c98effd45" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - ایپی 4 ایران و خارج را وارد میکنم
 - اگرنمیدانید چه mtu مناسب شما هست گزینه No رو بزنید. بعدا میتوانید در منو آن را ویرایش کنید و پکت لاست خود را با mtu های متفاوت بررسی کنید.
@@ -156,6 +167,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/8a1255fb-f5f7-49d9-9023-492beeb332f8" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - چون میخواهم ایپی پرایوت من از نوع 6 باشد در قسمت GENEVE IP VERSION ، گزینه دوم ایپی 6 رو انتخاب میکنم تا ایپی پرایوت 6 به من بدهد
 - ایپی 6 ایران و خارج را وارد میکنم. اگر سرور ایران شما، ایپی 6 ندارد... میتوانید از تانل بروکر هم استفاده نمایید.
@@ -213,6 +225,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/8ff505d6-93e2-40fb-bf3d-b159eca45bf9" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - چون میخواهم ایپی پرایوت من از نوع 6 باشد در قسمت GENEVE IP VERSION ، گزینه دوم ایپی 6 رو انتخاب میکنم تا ایپی پرایوت 6 به من بدهد
 - ایپی 6 ایران و خارج را وارد میکنم. اگر سرور ایران شما، ایپی 6 ندارد... میتوانید از تانل بروکر هم استفاده نمایید.
@@ -271,6 +284,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/a07b5e50-73d5-444e-af0d-56038a39b101" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - در قسمت GENEVE IP VERSION ، پرایوت ایپی 4 را انتخاب میکنم
 - ایپی 4 ایران را وارد میکنم
@@ -311,6 +325,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/b67cee71-ad77-4223-9f9f-086503ccb8b4" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - در قسمت GENEVE IP VERSION ، پرایوت ایپی 6 را انتخاب میکنم
 - ایپی 4 ایران را وارد میکنم
@@ -352,6 +367,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/30851e2f-4b26-4b90-97af-6a17eca1f8d0" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - در قسمت GENEVE IP VERSION ، پرایوت ایپی 4 را انتخاب میکنم
 - ایپی 4 ایران را وارد میکنم
@@ -391,6 +407,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/6c0d0159-4ee6-4959-86d7-51237256c632" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - در قسمت GENEVE IP VERSION ، پرایوت ایپی 6 را انتخاب میکنم
 - ایپی 4 ایران را وارد میکنم
@@ -431,6 +448,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/e5aabf75-d238-42f7-874e-461893c88746" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - در قسمت GENEVE IP VERSION ، پرایوت ایپی 4 را انتخاب میکنم
 - ایپی 6 ایران را وارد میکنم. میتوانید از طریق تانل بروکر، ایپی 6 بگیرید و ان را وارد کنید یا اگر سرور شما ایپی 6 دارد ، ان را وارد کنید. (اتصال شما به خوب بودن و نداشتن اختلال بر روی این ایپی 6، بستگی دارد)
@@ -472,6 +490,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
   <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/44496990-8b3f-44e2-9a41-61515b616bf4" alt="Image" />
 </p>
 
+- **حتما برای کانفیگ تانل های geneve، نخست فایروال ufw را خاموش کنید و پس از اتمام کانفیگ میتوانید روشن نمایید**
 - سرور خارج را کانفیگ میکنیم.
 - در قسمت GENEVE IP VERSION ، پرایوت ایپی 6 را انتخاب میکنم
 - ایپی 6 ایران را وارد میکنم. میتوانید از طریق تانل بروکر، ایپی 6 بگیرید و ان را وارد کنید یا اگر سرور شما ایپی 6 دارد ، ان را وارد کنید. (اتصال شما به خوب بودن و نداشتن اختلال بر روی این ایپی 6، بستگی دارد)
@@ -499,47 +518,7 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
 
   </details>
 </div>
- <div align="right">
-  <details>
-    <summary><strong><img src="https://github.com/Azumi67/Rathole_reverseTunnel/assets/119934376/fcbbdc62-2de5-48aa-bbdd-e323e96a62b5" alt="Image"> </strong>روش Geneve + ICMP | پرایوت ایپی 6</summary>
-  
-  
------------------------------------- 
 
-
-![green-dot-clipart-3](https://github.com/Azumi67/6TO4-PrivateIP/assets/119934376/902a2efa-f48f-4048-bc2a-5be12143bef3) **سرور خارج** 
-
- <p align="right">
-  <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/932b1f33-48be-4d85-92f6-e47d43f19998" alt="Image" />
-</p>
-
-- سرور خارج را کانفیگ میکنیم.
-- در قسمت GENEVE IP VERSION ، پرایوت ایپی 6 را انتخاب میکنم
-- پس از نصب پیش نیاز ها، تانل در سرور خارح فعال میشود سپس از شما MTU برای GENEVE سوال میشود
-- اگرنمیدانید چه mtu مناسب شما هست گزینه No رو بزنید. بعدا میتوانید در منو آن را ویرایش کنید و پکت لاست خود را با mtu های متفاوت بررسی کنید.
-- ایپی 4 سرور ایران را برای سرویس پینگ وارد میکنم.
-- ایپی ساخته شده شما در آخر به شما نمایش داده میشود
-
-----------------------
-
-![green-dot-clipart-3](https://github.com/Azumi67/6TO4-PrivateIP/assets/119934376/49000de2-53b6-4c5c-888d-f1f397d77b92)**سرور ایران**
-
-<p align="right">
-  <img src="https://github.com/Azumi67/6TO4-GRE-IPIP-SIT/assets/119934376/5e17b70f-ec19-4c8f-8210-0e5e68663db0" alt="Image" />
-</p>
-
-
-- سرور ایران را کانفیگ میکنیم.
-- در سرور خارج و در قسمت GENEVE IP VERSION ، پرایوت ایپی 6 را انتخاب کردیم
-- ایپی 4 خارج را وارد میکنم
-- اگرنمیدانید چه mtu مناسب شما هست گزینه No رو بزنید. بعدا میتوانید در منو آن را ویرایش کنید و پکت لاست خود را با mtu های متفاوت بررسی کنید.
-- ایپی 4 سرور خارج را برای سرویس پینگ وارد میکنم.
-- ایپی ساخته شده در اخر به شما نمایش داده میشود.
-- برای پرایوت ایپی 4 در GENEVE IP VERSION هم به همین صورت میتوانید کانفیگ نمایید
-------------------
-
-  </details>
-</div>
  <div align="right">
   <details>
     <summary><strong><img src="https://github.com/Azumi67/Rathole_reverseTunnel/assets/119934376/fcbbdc62-2de5-48aa-bbdd-e323e96a62b5" alt="Image"> </strong>روش IP6IP6</summary>
