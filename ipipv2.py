@@ -40410,7 +40410,7 @@ def priv_ir2_mtu():
 
 def priv_ir3_mtu():
     print("\033[93m───────────────────────────────────────\033[0m")
-    ddisplay_notification("\033[93m             Server 3\033[0m")
+    display_notification("\033[93m             Server 3\033[0m")
     print("\033[93m───────────────────────────────────────\033[0m")
     mtu_value = input("\033[93mEnter the \033[92mMTU value \033[93m[ \033[96mPrivate IP \033[93m]:\033[0m ")
     mtu_command = f"ip link set dev azumi3 mtu {mtu_value}\n"
@@ -40435,7 +40435,7 @@ def priv_ir3_mtu():
 
 def priv_ir4_mtu():
     print("\033[93m───────────────────────────────────────\033[0m")
-    ddisplay_notification("\033[93m             Server 4\033[0m")
+    display_notification("\033[93m             Server 4\033[0m")
     print("\033[93m───────────────────────────────────────\033[0m")
     mtu_value = input("\033[93mEnter the \033[92mMTU value \033[93m[ \033[96mPrivate IP \033[93m]:\033[0m ")
     mtu_command = f"ip link set dev azumi4 mtu {mtu_value}\n"
