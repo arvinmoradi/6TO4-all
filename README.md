@@ -5,15 +5,17 @@
 
 **این پروژه صرفا برای آموزش و بالا بردن دانش بوده است و هدف دیگری در ان نمیباشد**
 
-**در حال حاضر اجرای این اسکریپت به رم قابل توجهی نیازمند است . بعدا بعضی از قسمت های کد را جدا خواهم کرد که سبک تر شود**
+**در حال حاضر این اسکریپت نیاز به رم قابل توجهی برای اجرا دارد . نسخه ای جدا برای سرور های دارای رم کمتر منتشر شد ( به قسمت اسکریپت من مراجعه کنید)**
 
 **ربات ریکانفیگ برای تک سرور ها اضافه شد(مولتی ها به ارامی اضافه میشوند)**
+
+**ربات ریکانفیگ برای مولتی ها، ip6ip6 بدون Ipsec اپدیت شد**
+
+**ربات ریکانفیگ برای سرورهایی میباشد که مشکل قطعی لوکال دارند و تنها با reconfig مشکلشان حل میشود**
 
 **ویرایش ایپی های لوکال‌ اضافه شد. زمان زیادی برای این اپدیت صرف شده است و ممکن است حاوی اشتباهاتی هم باشد. لطفا در صورت مشاهده داخل issues به من اطلاع دهید**
 
 **وایرگارد و چند روش ترکیبی داخل گزینه 4 اضافه شد (همراه با آموزش)** (حجم کد بالا است و ممکن است اشتباهاتی داخلش باشد. داخل issue اطلاع بدهید)
-
-**بعدا یک ربات در داخل اسکریپت برای reconfig بدون دخالت شما، اضافه میکنم**
 
 **روش ISATAP به همراه آموزش اضافه شد***
 
@@ -222,6 +224,9 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
 - پس از کانفیگ سرور هایتان این گزینه را انتخاب نمایید و همان input ها را در اینجا بدهید . تعداد پینگ و زمان ping interval هم مشخص کنید
 - تمام mtu و default route ها no انتخاب شده است
 - سپس ریکانفیگ بدون دخالت شما انجام میشود. اول بین دو ایپی پرایوت به طور مثال به تعداد 5 پینگ میگیرد و اگر پاسخی دریافت نکند نخست کانفیگ را پاک و سپس ریکانفیگ میکند.
+- برای مولتی مانند کانفیگ مولتی، داخل سرور مربوطه پس از این که کانفیگ انجام دادید.. Input های مربوطه را وارد کنید و مقدار Ping interval و تعداد پینگ را مشخص کنید.
+- این ریکانفیگ از نسخه رم پایین تر استفاده خواهد کرد که مشکلی برای سرور شما در حین انجام آن به وجود نیاورد
+- مولتی ها به ارامی اضافه میشوند چون زمان زیادی برای این کار نیاز است
 
 ------------------
 
@@ -2317,11 +2322,33 @@ wget "https://raw.githubusercontent.com/hawshemi/Linux-Optimizer/main/linux-opti
 ![R (a2)](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/716fd45e-635c-4796-b8cf-856024e5b2b2)
 **اسکریپت من**
 ----------------
-- برای ubuntu24 و حتی سایر سیستم عامل ها میتوانید از این دستور استفاده نمایید ( پیش نیاز ها نصب شده باشد)
+
+- نصب یش نیاز ها
+```
+apt install python3 -y && sudo apt install python3-pip &&  pip install colorama && pip install netifaces && apt install curl -y
+pip3 install colorama
+sudo apt-get install python-pip -y  &&  apt-get install python3 -y && alias python=python3 && python -m pip install colorama && python -m pip install netifaces
+```
+- نسخه پایین برای سرور های دارای رم کمتر میباشد
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/lightweight.sh)"
+```
+- نسخه پایین برای سرور های دارای رم کمتر و externally managed
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/managed4.sh)"
+```
+
+------------------
+- برای ubuntu24 و حتی سایر سیستم عامل ها میتوانید از این دستور استفاده نمایید ( پیش نیاز ها نصب شده باشد)- این نسخه برای سرور های با رم بالا است
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/ubuntu24.sh)"
 ```
-
+- برای ubuntu24 و سیستم عامل های دیگر با خطای externally managed - این نسخه برای سرور های با رم بالا است
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/managed3.sh)"
+```
+----------------
+- نسخه های پایین ممکن است برای همه قابل اجرا نباشد و برای سرور های با رم بالا است
 ```
 apt install python3 -y && sudo apt install python3-pip &&  pip install colorama && pip install netifaces && apt install curl -y && python3 <(curl -Ls https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ipipv2.py --ipv4)
 ```
@@ -2345,10 +2372,6 @@ python3 <(curl -Ls https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ip
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed2.sh)"
 ```
-- یا برای همین خطا در ubuntu24 از دستور زیر استفاده نمایید
- ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/managed3.sh)"
- ```
 ---------------------------------------------
 
 
