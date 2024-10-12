@@ -9550,6 +9550,7 @@ def multi_edit_local():
     print("5. \033[92mGeneve UDP \033[0m")
     print("6. \033[93mGeneve + GRE6 [IPV4]\033[0m")
     print("7. \033[93mWireguard\033[0m")
+    print("8. \033[92mEOIP\033[0m")
     print("0. \033[94mback to the previous menu\033[0m")
     print("\033[93m╰───────────────────────────────────────╯\033[0m")
 
@@ -9576,12 +9577,1980 @@ def multi_edit_local():
         elif choice == "7":
             wireguard_edit_server()
             break
+        elif choice == "8":
+            eoip_editlocal()
+            break
         elif choice == "0":
             clear()
             edit_local()
             break
         else:
             print("Invalid choice.")
+
+SERVICE_FILE_IRAN1 = "/etc/systemd/system/eoip_iran_1.service"
+SERVICE_FILE_IRAN2 = "/etc/systemd/system/eoip_iran_2.service"
+SERVICE_FILE_IRAN3 = "/etc/systemd/system/eoip_iran_3.service"
+SERVICE_FILE_IRAN4 = "/etc/systemd/system/eoip_iran_4.service"
+SERVICE_FILE_IRAN5 = "/etc/systemd/system/eoip_iran_5.service"
+SERVICE_FILE_KHAREJ1 = "/etc/systemd/system/eoip_kharej_1.service"
+SERVICE_FILE_KHAREJ2 = "/etc/systemd/system/eoip_kharej_2.service"
+SERVICE_FILE_KHAREJ3 = "/etc/systemd/system/eoip_kharej_3.service"
+SERVICE_FILE_KHAREJ4 = "/etc/systemd/system/eoip_kharej_4.service"
+SERVICE_FILE_KHAREJ5 = "/etc/systemd/system/eoip_kharej_5.service"
+PRIVATE_IP_FILE1 = "/usr/local/bin/cmd/eoip_additional_commands_1.sh"
+PRIVATE_IP_FILE2 = "/usr/local/bin/cmd/eoip_additional_commands_2.sh"
+PRIVATE_IP_FILE3 = "/usr/local/bin/cmd/eoip_additional_commands_3.sh"
+PRIVATE_IP_FILE4 = "/usr/local/bin/cmd/eoip_additional_commands_4.sh"
+PRIVATE_IP_FILE5 = "/usr/local/bin/cmd/eoip_additional_commands_5.sh"
+IPSEC_CONF_FILE = "/etc/ipsec1.conf"
+IPSEC_SECRETS_FILE = "/etc/ipsec.secrets"
+PING_SCRIPT_PATH1 = '/etc/ping_eoip_1.sh'
+PING_SCRIPT_PATH2 = '/etc/ping_eoip_2.sh'
+PING_SCRIPT_PATH3 = '/etc/ping_eoip_3.sh'
+PING_SCRIPT_PATH4 = '/etc/ping_eoip_4.sh'
+PING_SCRIPT_PATH5 = '/etc/ping_eoip_5.sh'
+SERVICE_FILE_PING1 = '/etc/systemd/system/ping_eoip_1.service'
+SERVICE_FILE_PING2 = '/etc/systemd/system/ping_eoip_2.service'
+SERVICE_FILE_PING3 = '/etc/systemd/system/ping_eoip_3.service'
+SERVICE_FILE_PING4 = '/etc/systemd/system/ping_eoip_4.service'
+SERVICE_FILE_PING5 = '/etc/systemd/system/ping_eoip_5.service'
+ADDITIONAL_SERVICE_IRAN1 = "/etc/systemd/system/additional_irancmd_1.service"
+ADDITIONAL_SERVICE_IRAN2 = "/etc/systemd/system/additional_irancmd_2.service"
+ADDITIONAL_SERVICE_IRAN3 = "/etc/systemd/system/additional_irancmd_3.service"
+ADDITIONAL_SERVICE_IRAN4 = "/etc/systemd/system/additional_irancmd_4.service"
+ADDITIONAL_SERVICE_IRAN5 = "/etc/systemd/system/additional_irancmd_5.service"
+ADDITIONAL_SERVICE_KHAREJ1 = "/etc/systemd/system/eoip_additional_kharej_1.service"
+ADDITIONAL_SERVICE_KHAREJ2 = "/etc/systemd/system/eoip_additional_kharej_2.service"
+ADDITIONAL_SERVICE_KHAREJ3 = "/etc/systemd/system/eoip_additional_kharej_3.service"
+ADDITIONAL_SERVICE_KHAREJ4 = "/etc/systemd/system/eoip_additional_kharej_4.service"
+ADDITIONAL_SERVICE_KHAREJ5 = "/etc/systemd/system/eoip_additional_kharej_5.service"
+
+def eoip_editlocal():
+    os.system("clear")
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m Edit Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭───────────────────────────────────────╮\033[0m")
+    print("1  \033[93m[1] Kharej [5] IRAN\033[0m")
+    print("2  \033[92m[5] Kharej [1] IRAN\033[0m")
+    print("0. \033[94mback to the previous menu\033[0m")
+    print("\033[93m╰───────────────────────────────────────╯\033[0m")
+
+    while True:
+        choice = input("\033[38;5;205mEnter your choice Please: \033[0m")
+        if choice == "1":
+            eoip_edit_1kharej_5iran()
+            break
+        elif choice == "2":
+            eoip_edit_5kharej_1iran()
+            break
+        elif choice == "0":
+            clear()
+            multi_edit_local()
+            break
+        else:
+            print("Invalid choice.")
+
+def eoip_edit_5kharej_1iran():
+    os.system("clear")
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP Kharej\033[93m Edit Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭───────────────────────────────────────╮\033[0m")
+    print("1  \033[93mKharej [1]\033[0m")
+    print("2  \033[93mKharej [2]\033[0m")
+    print("3  \033[93mKharej [3]\033[0m")
+    print("4  \033[93mKharej [4]\033[0m")
+    print("5  \033[93mKharej [5]\033[0m")
+    print("\033[93m───────────────────────────────────────\033[0m")
+    print("6  \033[93mIRAN configs\033[0m")
+    print("0. \033[94mback to the previous menu\033[0m")
+    print("\033[93m╰───────────────────────────────────────╯\033[0m")
+
+    while True:
+        choice = input("\033[38;5;205mEnter your choice Please: \033[0m")
+        if choice == "1":
+            edit_local_eoip_kharej1()
+            break
+        elif choice == "2":
+            edit_local_eoip_kharej2()
+            break
+        elif choice == "3":
+            edit_local_eoip_kharej3()
+            break
+        elif choice == "4":
+            edit_local_eoip_kharej4()
+            break
+        elif choice == "5":
+            edit_local_eoip_kharej5()
+            break
+        elif choice == "6":
+            edit_local_eoip_iranmenu()
+            break
+        elif choice == "0":
+            clear()
+            eoip_editlocal()
+            break
+        else:
+            print("Invalid choice.")
+
+def edit_local_eoip_iranmenu():
+    os.system("clear")
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP IRAN\033[93m Edit Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭───────────────────────────────────────╮\033[0m")
+    print("1  \033[93mIRAN config [1]\033[0m")
+    print("2  \033[93mIRAN config [2]\033[0m")
+    print("3  \033[92mIRAN config [3]\033[0m")
+    print("4  \033[93mIRAN config [4]\033[0m")
+    print("5  \033[93mIRAN config [5]\033[0m")
+    print("0. \033[94mback to the previous menu\033[0m")
+    print("\033[93m╰───────────────────────────────────────╯\033[0m")
+
+    while True:
+        choice = input("\033[38;5;205mEnter your choice Please: \033[0m")
+        if choice == "1":
+            edit_local_eoip_iranconfig1()
+            break
+        elif choice == "2":
+            edit_local_eoip_iranconfig2()
+            break
+        elif choice == "3":
+            edit_local_eoip_iranconfig3()
+            break
+        elif choice == "4":
+            edit_local_eoip_iranconfig4()
+            break
+        elif choice == "5":
+            edit_local_eoip_iranconfig5()
+            break
+        elif choice == "0":
+            clear()
+            eoip_edit_5kharej_1iran()
+            break
+        else:
+            print("Invalid choice.")
+
+# 1 kharej 5iran
+def eoip_edit_1kharej_5iran():
+    os.system("clear")
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP IRAN\033[93m Edit Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭───────────────────────────────────────╮\033[0m")
+    print("1  \033[93mIRAN [1]\033[0m")
+    print("2  \033[93mIRAN [2]\033[0m")
+    print("3  \033[93mIRAN [3]\033[0m")
+    print("4  \033[93mIRAN [4]\033[0m")
+    print("5  \033[93mIRAN [5]\033[0m")
+    print("\033[93m───────────────────────────────────────\033[0m")
+    print("6  \033[93mKharej configs\033[0m")
+    print("0. \033[94mback to the previous menu\033[0m")
+    print("\033[93m╰───────────────────────────────────────╯\033[0m")
+
+    while True:
+        choice = input("\033[38;5;205mEnter your choice Please: \033[0m")
+        if choice == "1":
+            edit_local_eoip_iran1()
+            break
+        elif choice == "2":
+            edit_local_eoip_iran2()
+            break
+        elif choice == "3":
+            edit_local_eoip_iran3()
+            break
+        elif choice == "4":
+            edit_local_eoip_iran4()
+            break
+        elif choice == "5":
+            edit_local_eoip_iran5()
+            break
+        elif choice == "6":
+            edit_local_eoip_kharejmenu()
+            break
+        elif choice == "0":
+            clear()
+            eoip_editlocal()
+            break
+        else:
+            print("Invalid choice.")
+
+def edit_local_eoip_kharejmenu():
+    os.system("clear")
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP Kharej\033[93m Edit Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭───────────────────────────────────────╮\033[0m")
+    print("1  \033[93mKharej config [1]\033[0m")
+    print("2  \033[93mKharej config [2]\033[0m")
+    print("3  \033[92mKharej config [3]\033[0m")
+    print("4  \033[93mKharej config [4]\033[0m")
+    print("5  \033[93mKharej config [5]\033[0m")
+    print("0. \033[94mback to the previous menu\033[0m")
+    print("\033[93m╰───────────────────────────────────────╯\033[0m")
+
+    while True:
+        choice = input("\033[38;5;205mEnter your choice Please: \033[0m")
+        if choice == "1":
+            edit_local_eoip_kharejconfig1()
+            break
+        elif choice == "2":
+            edit_local_eoip_kharejconfig2()
+            break
+        elif choice == "3":
+            edit_local_eoip_kharejconfig3()
+            break
+        elif choice == "4":
+            edit_local_eoip_kharejconfig4()
+            break
+        elif choice == "5":
+            edit_local_eoip_kharejconfig5()
+            break
+        elif choice == "0":
+            clear()
+            eoip_edit_1kharej_5iran()
+            break
+        else:
+            print("Invalid choice.")
+
+def extract_ips(service_file):
+    with open(service_file, 'r') as f:
+        content = f.read()
+    local_ip = re.search(r"local (\S+)", content).group(1)
+    remote_ip = re.search(r"remote (\S+)", content).group(1)
+    return local_ip, remote_ip
+
+
+def extract_ipsec_secrets():
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return None, None, None
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        content = f.read()
+    ip_pair = re.search(r"(\S+) (\S+) : PSK \"(.*?)\"", content)
+    if ip_pair:
+        left_ip, right_ip, secret_key = ip_pair.groups()
+        return left_ip, right_ip, secret_key
+    return None, None, None
+
+def calculate_opposite_ip(ip):
+    if ':' in ip:  
+        return re.sub(r"::(\d+)", lambda m: f"::{int(m.group(1)) + 1}", ip)
+    else:  
+        parts = ip.split('.')
+        parts[-1] = str(int(parts[-1]) + 1)
+        return '.'.join(parts)
+#1
+def extract_private_ip1():
+    with open(PRIVATE_IP_FILE1, 'r') as f:
+        content = f.read()
+    private_ip = re.search(r"ip addr add (\S+)/", content).group(1)
+    return private_ip
+
+def extract_private_ip2():
+    with open(PRIVATE_IP_FILE2, 'r') as f:
+        content = f.read()
+    private_ip = re.search(r"ip addr add (\S+)/", content).group(1)
+    return private_ip
+
+def extract_private_ip3():
+    with open(PRIVATE_IP_FILE3, 'r') as f:
+        content = f.read()
+    private_ip = re.search(r"ip addr add (\S+)/", content).group(1)
+    return private_ip
+
+def extract_private_ip4():
+    with open(PRIVATE_IP_FILE4, 'r') as f:
+        content = f.read()
+    private_ip = re.search(r"ip addr add (\S+)/", content).group(1)
+    return private_ip
+
+def extract_private_ip5():
+    with open(PRIVATE_IP_FILE5, 'r') as f:
+        content = f.read()
+    private_ip = re.search(r"ip addr add (\S+)/", content).group(1)
+    return private_ip
+
+def update_ipsec_conf_and_secrets_kh1(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipkh1.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_kh2(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipkh2.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_kh3(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipkh3.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_kh4(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipkh4.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_kh5(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipkh5.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_ir1(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipir1.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_ir2(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipir2.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_ir3(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipir3.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_ir4(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipir4.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_ipsec_conf_and_secrets_ir5(new_ip):
+    opposite_ip = calculate_opposite_ip(new_ip)
+
+    if not os.path.exists(IPSEC_CONF_FILE):
+        print("\033[91mError:\033[0m Ipsec not available.")
+        return
+
+    with open(IPSEC_CONF_FILE, 'r') as f:
+        ipsec_content = f.read()
+
+    conn_block = re.search(r"(conn eoip_eoipir5.*?)(?=conn|\Z)", ipsec_content, re.DOTALL)
+    if conn_block:
+        conn_block_content = conn_block.group(1)
+
+        conn_block_content = re.sub(r"leftid=\S+", f"leftid={new_ip}", conn_block_content)
+        conn_block_content = re.sub(r"leftsubnet=\S+", f"leftsubnet={new_ip}/64", conn_block_content)
+
+        conn_block_content = re.sub(r"right=\S+", f"right={opposite_ip}", conn_block_content)
+        conn_block_content = re.sub(r"rightsubnet=\S+", f"rightsubnet={opposite_ip}/64", conn_block_content)
+
+        ipsec_content = ipsec_content.replace(conn_block.group(1), conn_block_content)
+
+        with open(IPSEC_CONF_FILE, 'w') as f:
+            f.write(ipsec_content)
+
+    if not os.path.exists(IPSEC_SECRETS_FILE):
+        print("\033[91mError:\033[0m PSK not available.")
+        return
+
+    with open(IPSEC_SECRETS_FILE, 'r') as f:
+        secrets_content = f.read()
+
+    updated_secrets = re.sub(r"(\S+) (\S+) : PSK ", f"{opposite_ip} {new_ip} : PSK ", secrets_content)
+
+    with open(IPSEC_SECRETS_FILE, 'w') as f:
+        f.write(updated_secrets)
+
+def update_private_ip_kh1(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+
+    with open(PRIVATE_IP_FILE1, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    
+    with open(PRIVATE_IP_FILE1, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH1)
+    restart_ping_service(SERVICE_FILE_PING1)
+    update_ipsec_conf_and_secrets_kh1(new_ip)
+
+def update_ping_script(new_ip, ping_script_path):
+    opposite_ip = calculate_opposite_ip(new_ip)
+    script_content = f"""#!/bin/bash
+ip_address="{opposite_ip}"
+max_pings=5
+interval=2
+while true
+do
+    for ((i = 1; i <= max_pings; i++))
+    do
+        ping_result=$(ping -c 1 $ip_address | grep "time=" | awk -F "time=" '{{{{print $2}}}}' | awk '{{{{print $1}}}}' | cut -d "." -f1)
+        if [ -n "$ping_result" ]; then
+            echo "Ping successful! Response time: $ping_result ms"
+        else
+            echo "Ping failed!"
+        fi
+    done
+    echo "Waiting for $interval seconds..."
+    sleep $interval
+done
+"""
+    with open(ping_script_path, "w") as script_file:
+        script_file.write(script_content)
+
+    os.chmod(ping_script_path, 0o755)
+
+
+def restart_ping_service(service_file):
+    if not os.path.exists(service_file):
+        print(f"\033[91mError:\033[0m {service_file} does not exist. Exiting...")
+        return
+    
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', os.path.basename(service_file)])
+
+def update_private_ip_kh2(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+
+    with open(PRIVATE_IP_FILE2, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    
+    with open(PRIVATE_IP_FILE2, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH2)
+    restart_ping_service(SERVICE_FILE_PING2)
+    update_ipsec_conf_and_secrets_kh2(new_ip)
+
+
+def update_private_ip_kh3(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE3, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE3, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH3)
+
+    restart_ping_service(SERVICE_FILE_PING3)
+
+    update_ipsec_conf_and_secrets_kh3(new_ip)
+
+def update_private_ip_kh4(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE4, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE4, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH4)
+
+    restart_ping_service(SERVICE_FILE_PING4)
+
+    update_ipsec_conf_and_secrets_kh4(new_ip)
+
+def update_private_ip_kh5(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE5, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE5, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH5)
+
+    restart_ping_service(SERVICE_FILE_PING5)
+
+    update_ipsec_conf_and_secrets_kh5(new_ip)
+
+def update_private_ip_ir1(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE1, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE1, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH1)
+
+    restart_ping_service(SERVICE_FILE_PING1)
+
+    update_ipsec_conf_and_secrets_ir1(new_ip)
+
+def update_private_ip_ir2(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE2, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE2, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH2)
+
+    restart_ping_service(SERVICE_FILE_PING2)
+
+    update_ipsec_conf_and_secrets_ir2(new_ip)
+
+def update_private_ip_ir3(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE3, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE3, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH3)
+
+    restart_ping_service(SERVICE_FILE_PING3)
+
+    update_ipsec_conf_and_secrets_ir3(new_ip)
+
+def update_private_ip_ir4(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE4, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE4, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH4)
+
+    restart_ping_service(SERVICE_FILE_PING4)
+
+    update_ipsec_conf_and_secrets_ir4(new_ip)
+
+
+def update_private_ip_ir5(new_ip):
+    try:
+        ip = ipaddress.ip_address(new_ip)
+        if ip.version == 4:
+            cidr = 24
+        elif ip.version == 6:
+            cidr = 64
+        else:
+            raise ValueError("unsupported IP")
+    except ValueError as e:
+        print(f"Wrong IP address: {e}")
+        return
+    
+    with open(PRIVATE_IP_FILE5, 'r') as f:
+        content = f.read()
+
+    updated_content = re.sub(r"ip addr add \S+/\d+", f"ip addr add {new_ip}/{cidr}", content)
+    with open(PRIVATE_IP_FILE5, 'w') as f:
+        f.write(updated_content)
+
+    update_ping_script(new_ip, PING_SCRIPT_PATH5)
+
+    restart_ping_service(SERVICE_FILE_PING5)
+
+    update_ipsec_conf_and_secrets_ir5(new_ip)
+
+def save_and_restart_services_kharej1():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_kharej_1'])
+    subprocess.run(['systemctl', 'restart', 'eoip_additional_kharej_1'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_1'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_kharej2():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_kharej_2'])
+    subprocess.run(['systemctl', 'restart', 'eoip_additional_kharej_2'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_2'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_kharej3():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_kharej_3'])
+    subprocess.run(['systemctl', 'restart', 'eoip_additional_kharej_3'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_3'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_kharej4():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_kharej_4'])
+    subprocess.run(['systemctl', 'restart', 'eoip_additional_kharej_4'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_4'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_kharej5():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_kharej_5'])
+    subprocess.run(['systemctl', 'restart', 'eoip_additional_kharej_5'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_5'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_iran1():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_iran_1'])
+    subprocess.run(['systemctl', 'restart', 'additional_irancmd_1'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_1'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_iran2():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_iran_2'])
+    subprocess.run(['systemctl', 'restart', 'additional_irancmd_2'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_2'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_iran3():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_iran_3'])
+    subprocess.run(['systemctl', 'restart', 'additional_irancmd_3'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_3'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_iran4():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_iran_4'])
+    subprocess.run(['systemctl', 'restart', 'additional_irancmd_4'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_4'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def save_and_restart_services_iran5():
+    subprocess.run(['systemctl', 'daemon-reload'])
+    subprocess.run(['systemctl', 'restart', 'eoip_iran_5'])
+    subprocess.run(['systemctl', 'restart', 'additional_irancmd_5'])
+    subprocess.run(['systemctl', 'restart', 'ping_eoip_5'])
+    subprocess.run(['systemctl', 'restart', 'strong-azumi1'])
+
+def display_status_box_kharej1():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_KHAREJ1)
+    private_ip = extract_private_ip1()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m Kharej [1] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mKharej IP: \033[97m {local_ip}\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:  \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_kharej2():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_KHAREJ2)
+    private_ip = extract_private_ip2()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m Kharej [2] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mKharej IP: \033[97m {local_ip}\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:  \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_kharej3():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_KHAREJ3)
+    private_ip = extract_private_ip3()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m Kharej [3] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mKharej IP:   \033[97m {local_ip}\033[0m")
+    print(f"\033[93mIRAN IP:     \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:  \033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:    \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_kharej4():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_KHAREJ4)
+    private_ip = extract_private_ip4()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m Kharej [4] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mKharej IP:   \033[97m {local_ip}\033[0m")
+    print(f"\033[93mIRAN IP:     \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:  \033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:    \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_kharej5():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_KHAREJ5)
+    private_ip = extract_private_ip5()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m Kharej [5] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mKharej IP:   \033[97m {local_ip}\033[0m")
+    print(f"\033[93mIRAN IP:     \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:  \033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:    \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_iran1():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_IRAN1)
+    private_ip = extract_private_ip1()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m IRAN [1] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m {local_ip}\033[0m")
+    print(f"\033[93mKharej IP: \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:  \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_iran2():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_IRAN2)
+    private_ip = extract_private_ip2()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m IRAN [2] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m   {local_ip}\033[0m")
+    print(f"\033[93mKharej IP: \033[97m   {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m   {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:   \033[97m \"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_iran3():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_IRAN3)
+    private_ip = extract_private_ip3()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m IRAN [3] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m   {local_ip}\033[0m")
+    print(f"\033[93mKharej IP: \033[97m   {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m   {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:   \033[97m \"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_iran4():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_IRAN4)
+    private_ip = extract_private_ip4()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m IRAN [4] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m {local_ip}\033[0m")
+    print(f"\033[93mKharej IP: \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:  \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def display_status_box_iran5():
+    os.system("clear")
+    local_ip, remote_ip = extract_ips(SERVICE_FILE_IRAN5)
+    private_ip = extract_private_ip5()
+    left_ip, right_ip, secret_key = extract_ipsec_secrets()
+    print("\033[92m ^ ^\033[0m")
+    print("\033[92m(\033[91mO,O\033[92m)\033[0m")
+    print("\033[92m(   ) \033[92mEOIP\033[93m IRAN [5] Menu\033[0m")
+    print('\033[92m "-"\033[93m══════════════════════════════════\033[0m')
+    print("\033[93m╭─────────\033[97mCurrent Config\033[93m──────────────╮\033[0m")
+    print(f"\033[93mIRAN IP:   \033[97m {local_ip}\033[0m")
+    print(f"\033[93mKharej IP: \033[97m {remote_ip}\033[0m")
+    print(f"\033[93mPrivate IP:\033[97m {private_ip}\033[0m")
+    if left_ip and right_ip:
+        print(f"\033[93mPSK:  \033[97m\"{secret_key}\"\033[0m")
+    else:
+        print("\033[91mPSK information not available.\033[0m")
+    print("\033[93m╰─────────────────────────────────────╯\033[0m")
+
+def update_service_file(service_file, ip_type, new_ip):
+    with open(service_file, 'r') as f:
+        content = f.read()
+    updated_content = re.sub(fr"{ip_type} \S+", f"{ip_type} {new_ip}", content)
+    with open(service_file, 'w') as f:
+        f.write(updated_content)
+
+def edit_local_eoip_kharej1():
+    """Allows the user to edit the Kharej1 EOIP configuration."""
+    while True:
+        display_status_box_kharej1()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej [1]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ1)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej [1]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ1, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ1)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ1, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip1()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh1(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej1()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            os.system("clear")
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Please try again.\033[0m")
+
+def edit_local_eoip_kharej2():
+    while True:
+        display_status_box_kharej2()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej [2]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ2)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej [2]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ2, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ2)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ2, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip2()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh2(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej2()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+
+def edit_local_eoip_kharej3():
+    while True:
+        display_status_box_kharej3()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej [3]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ3)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej [3]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ3, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ3)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ3, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip3()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh3(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej3()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharej4():
+    while True:
+        display_status_box_kharej4()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej [4]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ4)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej [4]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ4, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ4)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ4, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip4()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh4(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej4()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharej5():
+    while True:
+        display_status_box_kharej5()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej [5]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ5)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej [5]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ5, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ5)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ5, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip5()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh5(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej5()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iranconfig1():
+    while True:
+        display_status_box_iran1()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej [1] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN1)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN1, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN1)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej [1] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN1, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip1()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir1(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran1()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iranconfig2():
+    while True:
+        display_status_box_iran2()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej [2] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN2)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN2, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN2)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej [2] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN2, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip2()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir2(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran2()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iranconfig3():
+    while True:
+        display_status_box_iran3()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej [3] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN3)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN3, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN3)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej [3] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN3, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip3()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir3(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran3()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iranconfig4():
+    while True:
+        display_status_box_iran4()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej [4] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN4)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN4, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN4)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej [4] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN4, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip4()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir4(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran4()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iranconfig5():
+    while True:
+        display_status_box_iran5()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej [5] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN5)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN5, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN5)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej [5] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN5, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip5()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir5(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran5()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_5kharej_1iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharejconfig1():
+    while True:
+        display_status_box_kharej1()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN [1] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ1)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ1, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ1)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN [1] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ1, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip1()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh1(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej1()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharejconfig2():
+    while True:
+        display_status_box_kharej2()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN [2] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ2)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ2, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ2)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN [2] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ2, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip2()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh2(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej2()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharejconfig3():
+    while True:
+        display_status_box_kharej3()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN [3] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ3)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ3, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ3)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN [3] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ3, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip3()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh3(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej3()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharejconfig4():
+    while True:
+        display_status_box_kharej4()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN [4] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ4)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ4, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ4)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN [4] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ4, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip4()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh4(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej4()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_kharejconfig5():
+    while True:
+        display_status_box_kharej5()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mKharej\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mIRAN [5] IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_KHAREJ5)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mKharej\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ5, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_KHAREJ5)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mIRAN [5] \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_KHAREJ5, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip5()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_kh5(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_kharej5()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iran1():
+    while True:
+        display_status_box_iran1()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN [1]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN1)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN [1]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN1, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN1)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN1, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip1()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir1(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran1()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iran2():
+    while True:
+        display_status_box_iran2()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN [2]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN2)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN [2]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN2, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN2)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN2, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip2()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir2(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran2()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iran3():
+    while True:
+        display_status_box_iran3()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN [3]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN3)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN [3]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN3, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN3)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN3, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip3()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir3(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran3()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iran4():
+    while True:
+        display_status_box_iran4()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN [4]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN4)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN [4]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN4, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN4)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN4, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip4()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir4(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran4()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
+
+def edit_local_eoip_iran5():
+    while True:
+        display_status_box_iran5()
+        print("\033[93m───────────────────────────────────────\033[0m")
+        print("1.\033[93m Change \033[92mIRAN [5]\033[93m IP\033[0m")
+        print("2.\033[93m Change \033[92mKharej IP\033[0m")
+        print("3.\033[93m Change Private IP\033[0m")
+        print("4.\033[92m Save and Restart Services\033[0m")
+        print("5.\033[97m back to the menu\033[0m")
+        print("\033[93m───────────────────────────────────────\033[0m")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            local_ip, _ = extract_ips(SERVICE_FILE_IRAN5)
+            print(f"\033[93mCurrent Local IP: \033[97m{local_ip}\033[0m")
+            new_local_ip = input("\033[92mEnter New \033[97mIRAN [5]\033[92m IP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN5, "local", new_local_ip)
+        elif choice == '2':
+            _, remote_ip = extract_ips(SERVICE_FILE_IRAN5)
+            print(f"\033[93mCurrent Remote IP: \033[97m{remote_ip}\033[0m")
+            new_remote_ip = input("\033[92mEnter New \033[97mKharej \033[92mIP: \033[0m")
+            update_service_file(SERVICE_FILE_IRAN5, "remote", new_remote_ip)
+        elif choice == '3':
+            private_ip = extract_private_ip5()
+            print(f"\033[93mCurrent Private IP: \033[97m{private_ip}\033[0m")
+            new_private_ip = input("\033[92mEnter new \033[97mPrivate IP\033[92m: \033[0m")
+            update_private_ip_ir5(new_private_ip)
+        elif choice == '4':
+            save_and_restart_services_iran5()
+            print("Changes saved and services restarted.")
+        elif choice == '5':
+            clear()
+            eoip_edit_1kharej_5iran()
+        else:
+            print("\033[91mWrong choice. Plz try again\033[0m")
 
 
 def private_multiedit_local():
