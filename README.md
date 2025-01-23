@@ -2359,9 +2359,9 @@ Geneve is an extension of the original Virtual Extensible LAN (VXLAN) protocol a
 **اسکریپت های کارآمد :**
 - برای بهبود عملکرد سرور میتوانید از optimizer استفاده نمایید یا bbr ساده نصب کنید
 
-Kalilovers Script [for ipsec]
+arvinmoradi Script [for ipsec]
 ```
-python3 <(curl -Ls https://raw.githubusercontent.com/kalilovers/LightKnightBBR/main/bbr.py --ipv4)
+python3 <(curl -Ls https://raw.githubusercontent.com/arvinmoradi/LightKnightBBR/main/bbr.py --ipv4)
 ```
  Opiran Script
 ```
@@ -2387,26 +2387,26 @@ sudo apt-get install python-pip -y  &&  apt-get install python3 -y && alias pyth
 ```
 - نسخه پایین برای سرور های دارای رم کمتر میباشد
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/lightweight.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/lightweight.sh)"
 ```
 - نسخه پایین برای سرور های دارای رم کمتر و externally managed
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed4.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/managed4.sh)"
 ```
 
 ------------------
 - برای ubuntu24 و حتی سایر سیستم عامل ها میتوانید از این دستور استفاده نمایید ( پیش نیاز ها نصب شده باشد)- این نسخه برای سرور های با رم بالا است
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ubuntu24.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/ubuntu24.sh)"
 ```
 - برای ubuntu24 و سیستم عامل های دیگر با خطای externally managed - این نسخه برای سرور های با رم بالا است
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed3.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/managed3.sh)"
 ```
 ----------------
 - نسخه های پایین ممکن است برای همه قابل اجرا نباشد و برای سرور های با رم بالا است
 ```
-apt install python3 -y && sudo apt install python3-pip &&  pip install colorama && pip install netifaces && apt install curl -y && python3 <(curl -Ls https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ipipv2.py --ipv4)
+apt install python3 -y && sudo apt install python3-pip &&  pip install colorama && pip install netifaces && apt install curl -y && python3 <(curl -Ls https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/ipipv2.py --ipv4)
 ```
 
 
@@ -2426,7 +2426,7 @@ python3 <(curl -Ls https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/i
  <div dir="rtl">&bull; اگر سرور شما خطای externally-managed-environment داد از دستور زیر اقدام به اجرای اسکریپت نمایید.</div>
  
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed2.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/arvinmoradi/6TO4-all/main/managed2.sh)"
 ```
 ---------------------------------------------
 
