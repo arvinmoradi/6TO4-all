@@ -2387,21 +2387,21 @@ sudo apt-get install python-pip -y  &&  apt-get install python3 -y && alias pyth
 ```
 - نسخه پایین برای سرور های دارای رم کمتر میباشد
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/lightweight.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/lightweight.sh)"
 ```
 - نسخه پایین برای سرور های دارای رم کمتر و externally managed
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/managed4.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed4.sh)"
 ```
 
 ------------------
 - برای ubuntu24 و حتی سایر سیستم عامل ها میتوانید از این دستور استفاده نمایید ( پیش نیاز ها نصب شده باشد)- این نسخه برای سرور های با رم بالا است
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/ubuntu24.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/ubuntu24.sh)"
 ```
 - برای ubuntu24 و سیستم عامل های دیگر با خطای externally managed - این نسخه برای سرور های با رم بالا است
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Azumi67/6TO4-GRE-IPIP-SIT/main/managed3.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kalilovers/6TO4-all/main/managed3.sh)"
 ```
 ----------------
 - نسخه های پایین ممکن است برای همه قابل اجرا نباشد و برای سرور های با رم بالا است
